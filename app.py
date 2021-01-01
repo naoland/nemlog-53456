@@ -1,7 +1,8 @@
 import requests
 import json
-import sys
-import mytoken
+import os, sys
+
+LINE_TOKEN = os.environ["LINE_TOKEN"]
 
 
 def get_xem_price() -> float:
@@ -18,7 +19,7 @@ def get_status() -> dict:
     """連携状態を確認し、結果を返します"""
     url = "https://notify-api.line.me/api/status"
     # ヘッダーにLINEのトークンをセットします（超重要）
-    headers = {"Authorization": f"Bearer {mytoken.TOKEN}"}
+    headers = {"Authorization": f"Bearer {LINE_TOKEN}"}
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
         raise Exception(f"return status code is {response.status_code}")
@@ -29,7 +30,7 @@ def send_line_message(message):
     """ LINEへメッセージを送信する関数 """
     api_url = "https://notify-api.line.me/api/notify"
     # ヘッダーにLINEのトークンをセットします（超重要）
-    headers = {"Authorization": f"Bearer {mytoken.TOKEN}"}
+    headers = {"Authorization": f"Bearer {LINE_TOKEN}"}
     data = {"message": f" {message}"}
     response = requests.post(api_url, headers=headers, data=data)
     if response.status_code != 200:
