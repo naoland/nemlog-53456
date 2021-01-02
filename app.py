@@ -2,11 +2,13 @@ import requests
 import json
 import os, sys
 
+# LINEのアクセストークンを環境変数`LINE_TOKEN`から取得します。
+# トークンなどの認証に用いられる情報を、誰もが閲覧できるソースコードに記述してはいけません。
 LINE_TOKEN = os.environ["LINE_TOKEN"]
 
 
 def get_xem_price() -> float:
-    """XEMの現在価格を取得して返します"""
+    """XEMの現在の終値を取得して返します"""
     url = "https://api.zaif.jp/api/1/last_price/xem_jpy"
     response = requests.get(url)
     if response.status_code != 200:
@@ -21,6 +23,7 @@ def get_status() -> dict:
     # ヘッダーにLINEのトークンをセットします（超重要）
     headers = {"Authorization": f"Bearer {LINE_TOKEN}"}
     response = requests.get(url, headers=headers)
+    # 正常終了（200）以外は例外を発生させます
     if response.status_code != 200:
         raise Exception(f"return status code is {response.status_code}")
     return json.loads(response.text)
@@ -33,6 +36,7 @@ def send_line_message(message):
     headers = {"Authorization": f"Bearer {LINE_TOKEN}"}
     data = {"message": f" {message}"}
     response = requests.post(api_url, headers=headers, data=data)
+    # 正常終了（200）以外は例外を発生させます
     if response.status_code != 200:
         raise Exception(f"return status code is {response.status_code}")
 
