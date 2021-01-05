@@ -126,4 +126,4 @@ def send_line_message(message):
 上記ドキュメントの「通知系」の箇所をご覧ください。
 - [Environment Variables - Gitpod](https://www.gitpod.io/docs/environment-variables/#using-the-command-line-code-classlanguage-textgp-envcode)
 - [簡単プログラミング！XEMの現在価格をLINEに通知しよう（Python編）](https://github.com/naoland/nemlog-53456) github
-- [簡単プログラミング！XEMの現在価格をLINEに通知しよう（Python編）](https://nemlog.nem.social/blog/53471) nemlog
+- [簡単プログラミング！XEMの現在価格をLINEに通知しよう（Python編）](https://nemlog.nem.social/blog/53456) nemlog
